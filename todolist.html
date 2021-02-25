@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>To do list</title>
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    const submitForm = document.querySelector('.add');
+const addButton = document.querySelector('.add-todo');
+const todoList = document.querySelector('.todos');
+const list = document.querySelectorAll('.todos li');
+
+let listLenght = list.lenght;
+
+const generateTempalate = (todo) => {
+
+const html = `<li>
+                <input type="checkbox" id="todo_${listLenght}">
+                <label for="todo_${listLenght}">
+                  <span class="check"></span>
+                  ${todo}
+                </label>
+                <i class="far fa-trash-alt delete"></i>
+              </li>`
+todoList.innerHTML += html;
+};
+
+function addTodos(e) {
+e.preventDefault();
+const todo = submitForm.add.value.trim();
+if (todo.length) {
+  listLenght = listLenght + 1;
+  generateTempalate(todo);
+  submitForm.reset();
+}
+}
+
+submitForm.addEventListener('submit', addTodos);
+addButton.addEventListener('click', addTodos);
+
+function deleteTodos(e) {
+if (e.target.classList.contains('delete')) {
+  e.target.parentElement.remove();
+}
+}
+
+todoList.addEventListener('click', deleteTodos);
+    </script>
+  </head>
+  <body>
+    <div class="todoList">
+      <div class="cover_img">
+        <div class="cover_inner">
+          <h3>To Do List</h3>
+        </div>
+      </div>
+      <div class="content">
+        <form class="add">
+          <input type="text" name="add" placeholder="Add item..">
+          <div class="input_buttons">
+            <a href="#0" class="add_todo">
+              <i class="fas fa-plus"></i>
+            </a>
+          </div>
+        </form>
+      <ul class="todos">
+        <li>
+          <input type="checkbox" id="todo_1">
+          <label for="todo_1">
+            <span class="check"></span>
+            Buy Flight Tickets
+          </label>
+            <i class="far fa-trash-alt delete"></i>
+        </li>
+        <li>
+          <input type="checkbox" id="todo_2">
+          <label for="todo_2">
+            <span class="check"></span>
+            Find airbnb
+          </label>
+            <i class="far fa-trash-alt delete"></i>
+        </li>
+        <li>
+          <input type="checkbox" id="todo_3">
+          <label for="todo_3">
+            <span class="check"></span>
+            Look up
+          </label>
+            <i class="far fa-trash-alt delete"></i>
+        </li>
+        <li>
+          <input type="checkbox" id="todo_4">
+          <label for="todo_4">
+            <span class="check"></span>
+            Passpotr
+          </label>
+            <i class="far fa-trash-alt delete"></i>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </body>
+</html>
